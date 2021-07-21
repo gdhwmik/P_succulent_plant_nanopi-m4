@@ -24,7 +24,7 @@ struct sys_hwmon {
 int main()
 {
     int fd;
-    int port, duty,= -1, period;
+    int port, duty = -1, period;
     int set_duty = 0, set_period = 0;
 //    int opts;
 //    int option_index = 0;
