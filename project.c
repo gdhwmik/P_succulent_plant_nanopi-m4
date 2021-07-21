@@ -15,18 +15,21 @@ int main()
 	buf = "/sys/class/hwmon/hwmon0/temp1_input" ;
 	hwmonfd = open(buf, O_RDWR);
 	if (hwmonfd < 0) {
-		fprintf(stderr, "Failed to open gpio %d value\n", gpio);
-		perror("gpio failed");
+		fprintf(stderr, "Failed to open hwmon0 temp1\n");
+		perror("hwmon failed");
 	}
 
 	do {
-		nread = read(gpiofd, in, 1);
+		nread = read(hwmonfd, temper, 5);
 	} while (nread == 0);
 
 	if (nread == -1){
-		perror("GPIO Read failed");
+		perror("Temperature Read failed");
 		return -1;
 	}
 
-	close(gpiofd);
-	return atoi(in);
+	close(hwmonfd);
+	printf("Temperature is %d",temper);
+	
+	return 0;
+}
