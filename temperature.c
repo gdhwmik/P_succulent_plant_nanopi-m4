@@ -114,18 +114,18 @@ int gpio_write(int gpio, int val)
 	char buf[50];
 	int nread, ret, gpiofd;
 
-	sprintf(buf, "/sys/class/gpio/gpio%d/value", gpio);  //此將此字串存入buf陣列
-	gpiofd = open(buf, O_RDWR);							 //打開value檔；buf只是提供路徑
+	sprintf(buf, "/sys/class/gpio/gpio%d/value", gpio);  
+	gpiofd = open(buf, O_RDWR);							 
 	if (gpiofd > 0) {
-		snprintf(buf, 2, "%d", val);					 //將兩個字元存入buf陣列(含結尾數字)，存入數據為%d值為起對此函式所傳過來的值
-		ret = write(gpiofd, buf, 2);					 //將buf內資料兩字元大小存入value檔(此為1＝HI)
+		snprintf(buf, 2, "%d", val);					 
+		ret = write(gpiofd, buf, 2);					 
 		if (ret < 0) {
 			perror("failed to set gpio");
 			return 1;
 		}
 
 		close(gpiofd);
-		if (ret == 2) return 0;							 //write()成功會還傳寫入位元組數
+		if (ret == 2) return 0;							 
 	}
 
 	return 1;
@@ -151,14 +151,13 @@ int main()
     char str_temp[10];
     int int_temp;
     size_t count;
-	int gpio_on, gpio_off, i;
+	int gpio_on, gpio_off;
 	
     con_hwmon_temp.dev = 0;
     con_hwmon_temp.hwmon_buf = &hwmon_con_buf[0];
 
     sprintf(hwmon_temp_path, "%s/%s/%s", HWMON_SYS_DEV, HWMON_DEV, HWMON_TEMP);
     con_hwmon_temp.hwmon_path = hwmon_temp_path;
-	printf("%s\n",hwmon_temp_path);
 
     ret = access(hwmon_temp_path, R_OK | W_OK);
     if (ret) {
@@ -200,6 +199,7 @@ int main()
 */
 		if (int_temp > 33900)
 		{
+			printf("on 33");
 			gpio_on = 33;
 			gpio_export(gpio_on);
 			gpio_direction(gpio_on, 1);
@@ -210,6 +210,7 @@ int main()
 		}
 		else if (int_temp < 33850)
 		{
+			printf("on 32");
 			gpio_on = 32;
 			gpio_export(gpio_on);
 			gpio_direction(gpio_on, 1);
@@ -218,7 +219,7 @@ int main()
 			gpio_export(gpio_off);
 			gpio_write(gpio_on, 1);
 		}
-		usleep(10000000);
+		usleep(1000000);
 	};
 
     return 0;
