@@ -197,7 +197,7 @@ int main()
 			gpio_write(gpio_on, 0);
 			gpio_off = 32;
 			gpio_export(gpio_off);
-			gpio_write(gpio_on, 1);
+			gpio_write(gpio_off, 1);
 		}
 		if (int_temp < 33850)
 		{
@@ -205,7 +205,7 @@ int main()
 			gpio_on = 32;
 			gpio_export(gpio_on);
 			gpio_direction(gpio_on, 1);
-			gpio_write(gpio_off, 0);
+			gpio_write(gpio_on, 0);
 			gpio_off = 33;
 			gpio_export(gpio_off);
 			gpio_write(gpio_off, 1);
