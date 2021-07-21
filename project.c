@@ -8,11 +8,11 @@
 
 int main()
 {
-	int temper;
+	char temper[3] = {0,0,0};
 	char buf[50];
 	int nread, hwmonfd;
 
-	buf = "/sys/class/hwmon/hwmon0/temp1_input" ;
+	sprintf(buf, "/sys/class/hwmon/hwmon0/temp1_input");
 	hwmonfd = open(buf, O_RDWR);
 	if (hwmonfd < 0) {
 		fprintf(stderr, "Failed to open hwmon0 temp1\n");
@@ -20,7 +20,7 @@ int main()
 	}
 
 	do {
-		nread = read(hwmonfd, temper, 5);
+		nread = read(hwmonfd, temper, 1);
 	} while (nread == 0);
 
 	if (nread == -1){
