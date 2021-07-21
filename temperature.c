@@ -37,9 +37,9 @@ int main()
     con_hwmon_temp.dev = 0;
     con_hwmon_temp.hwmon_buf = &hwmon_con_buf[0];
 
-//    sprintf(hwmon_temp_path, "%s/%s/%s", HWMON_SYS_DEV, HWMON_DEV, HWMON_TEMP);
-//    con_hwmon_temp.hwmon_path = hwmon_temp_path;
-	con_hwmon_temp.hwmon_path = "/sys/class/hwmon/hwmon0/temp1_input"
+    sprintf(hwmon_temp_path, "%s/%s/%s", HWMON_SYS_DEV, HWMON_DEV, HWMON_TEMP);
+    con_hwmon_temp.hwmon_path = hwmon_temp_path;
+	printf("%s\n",hwmon_temp_path);
 
     ret = access(hwmon_temp_path, R_OK | W_OK);
     if (ret) {
