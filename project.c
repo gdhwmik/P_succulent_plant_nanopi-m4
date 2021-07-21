@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 
 
-int temper_read(int void)
+int temper_read(int temper)
 {
 	char in[3] = {0, 0, 0};
 	char buf[50];
@@ -15,7 +15,7 @@ int temper_read(int void)
 
 	sprintf(buf, "/sys/class/hwmon/hwmon0/temp1_input");
 	hwmonfd = open(buf, O_RDWR);
-	if (gpiofd < 0) {
+	if (hwmonfd < 0) {
 		fprintf(stderr, "Failed to open hwmonfd\n");
 		perror("hwmon failed");
 	}
@@ -37,10 +37,7 @@ int main()
 {
 	int temper, i;
 	printf("hello world");
-	printf("Temperature is %d\n", temper_read());
+	printf("Temperature is %d\n", temper_read(temper));
 	
 	return 0;		
 }
-
-
-
