@@ -122,7 +122,7 @@ int gpio_write(int gpio, int val)
 		snprintf(buf, 2, "%d", val);					 
 		ret = write(gpiofd, buf, 2);					 
 		if (ret < 0) {
-			perror("failed to set gpio");
+			//perror("failed to set gpio");
 			return 1;
 		}
 
@@ -193,9 +193,9 @@ int main()
 		gpio_k1 = 144; gpio_k4 = 50;
 		gpio_export(gpio_k1);
 		gpio_k1 = gpio_read (gpio_k1);
-		printf("gpio_k1 = %d", gpio_k1 );
+		printf("gpio_k1 = %d\n", gpio_k1 );
 		
-		if (int_temp > UPPER_TEMP )
+		if (int_temp > UPPER_TEMP && gpio_k1 == 0)
 		{
 			printf("on 33");
 			gpio_on = 33;
@@ -214,6 +214,12 @@ int main()
 			gpio_direction(gpio_on, 1);
 			gpio_write(gpio_on, 0);
 			gpio_off = 33;
+			gpio_export(gpio_off);
+			gpio_write(gpio_off, 1);
+		}
+		if (gpio_k1 == 1)
+		{
+			gpio_off = 32;
 			gpio_export(gpio_off);
 			gpio_write(gpio_off, 1);
 		}
