@@ -14,8 +14,8 @@
 #define HWMON_SYS_DEV "/sys/class/hwmon/"
 #define HWMON_DEV "hwmon0"
 #define HWMON_TEMP "temp1_input"
-#define UPPER_TEMP 34000
-#define LOWER_TEMP 32750
+#define UPPER_TEMP 33600
+#define LOWER_TEMP 32900
 
 
 int gpio_direction(int gpio, int dir)
@@ -193,7 +193,10 @@ int main()
 		gpio_k1 = 144; gpio_k4 = 50;
 		gpio_export(gpio_k1);
 		gpio_k1 = gpio_read (gpio_k1);
-		printf("gpio_k1 = %d\n", gpio_k1 );
+		printf("gpio_k1 = %d\n", gpio_k1);
+		gpio_export(gpio_k4);
+		gpio_k1 = gpio_read (gpio_k4);
+		printf("gpio_k1 = %d\n", gpio_k4);
 		
 		if (int_temp > UPPER_TEMP && gpio_k1 == 0)
 		{
@@ -206,7 +209,7 @@ int main()
 			gpio_export(gpio_off);
 			gpio_write(gpio_off, 1);
 		}
-		if (int_temp < LOWER_TEMP)
+		if (int_temp < LOWER_TEMP && gpio_k4 == 0)
 		{
 			printf("on 32");
 			gpio_on = 32;
@@ -223,7 +226,13 @@ int main()
 			gpio_export(gpio_off);
 			gpio_write(gpio_off, 1);
 		}
-		sleep(4);
+		if (gpio_k4 == 1)
+		{
+			gpio_off = 33;
+			gpio_export(gpio_off);
+			gpio_write(gpio_off, 1);
+		}
+		sleep(2);
 	};
 
     return 0;
