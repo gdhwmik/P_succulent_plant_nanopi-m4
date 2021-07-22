@@ -195,8 +195,8 @@ int main()
 		gpio_k1 = gpio_read (gpio_k1);
 		printf("gpio_k1 = %d\n", gpio_k1);
 		gpio_export(gpio_k4);
-		gpio_k1 = gpio_read (gpio_k4);
-		printf("gpio_k1 = %d\n", gpio_k4);
+		gpio_k4 = gpio_read (gpio_k4);
+		printf("gpio_k4 = %d\n", gpio_k4);
 		
 		if (int_temp > UPPER_TEMP && gpio_k1 == 0)
 		{
