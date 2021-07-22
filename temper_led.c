@@ -154,6 +154,7 @@ int main()
     int int_temp;
     size_t count;
 	int gpio_on, gpio_off;
+	int gpio_k1, gpio_k4;
 	
     con_hwmon_temp.dev = 0;
     con_hwmon_temp.hwmon_buf = &hwmon_con_buf[0];
@@ -189,8 +190,11 @@ int main()
 
 		close(fd);
 		
-
-		if (int_temp > UPPER_TEMP)
+		gpio_k1 = 144; gpio_k4 = 50;
+		gpio_k1 = gpio_read (gpio_k1);
+		printf("gpio_k1 = %d", gpio_k1 );
+		
+		if (int_temp > UPPER_TEMP )
 		{
 			printf("on 33");
 			gpio_on = 33;
