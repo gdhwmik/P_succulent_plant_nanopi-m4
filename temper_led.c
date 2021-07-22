@@ -191,6 +191,7 @@ int main()
 		close(fd);
 		
 		gpio_k1 = 144; gpio_k4 = 50;
+		gpio_export(gpio_k1);
 		gpio_k1 = gpio_read (gpio_k1);
 		printf("gpio_k1 = %d", gpio_k1 );
 		
