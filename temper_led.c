@@ -198,7 +198,7 @@ int main()
 		gpio_k4 = gpio_read (gpio_k4);
 		printf("gpio_k4 = %d\n", gpio_k4);
 		
-		if (int_temp > UPPER_TEMP && gpio_k1 == 0)
+		if (int_temp > UPPER_TEMP && gpio_k4 == 0)
 		{
 			printf("on 33");
 			gpio_on = 33;
@@ -209,7 +209,7 @@ int main()
 			gpio_export(gpio_off);
 			gpio_write(gpio_off, 1);
 		}
-		if (int_temp < LOWER_TEMP && gpio_k4 == 0)
+		if (int_temp < LOWER_TEMP && gpio_k1 == 0)
 		{
 			printf("on 32");
 			gpio_on = 32;
