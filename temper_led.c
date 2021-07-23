@@ -167,7 +167,8 @@ int main()
     if (ret) {
         printf("access hwmon_temp_path fail\r");
 		exit(1);
-		
+    	}
+	
 	sprintf(hwmon_temp_path, "%s/%s/%s", HWMON_SYS_DEV, HWMON_DEV, HWMON_HUMI);
     con_hwmon_temp.hwmon_path = hwmon_temp_path;
 
