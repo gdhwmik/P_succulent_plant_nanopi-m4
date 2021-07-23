@@ -231,10 +231,10 @@ int main()
 		
 		gpio_k3 = 145; gpio_k2 = 54;
 		gpio_export(gpio_k2);
-		gpio_k1 = gpio_read (gpio_k2);
+		gpio_k2 = gpio_read (gpio_k2);
 		printf("gpio_k2 = %d\n", gpio_k2);
 		gpio_export(gpio_k3);
-		gpio_k4 = gpio_read (gpio_k3);
+		gpio_k3 = gpio_read (gpio_k3);
 		printf("gpio_k3 = %d\n", gpio_k3);
 		
 		if (int_temp > UPPER_TEMP && gpio_k4 == 0)
