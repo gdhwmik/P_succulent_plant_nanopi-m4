@@ -14,10 +14,11 @@
 #define HWMON_SYS_DEV "/sys/class/hwmon/"
 #define HWMON_DEV "hwmon0"
 #define HWMON_TEMP "temp1_input"
-#define HWMON_HUMI "humidity1_input"
 #define UPPER_TEMP 33600
 #define LOWER_TEMP 32900
-
+#define HWMON_HUMI "humidity1_input"
+#define UPPER_HUMI 80000
+#define LOWER_HUMI 75000
 
 int gpio_direction(int gpio, int dir)
 {
@@ -156,6 +157,7 @@ int main()
     size_t count;
 	int gpio_on, gpio_off;
 	int gpio_k1, gpio_k4;
+	int gpio_k2, gpio_k3;
 	
     con_hwmon_temp.dev = 0;
     con_hwmon_temp.hwmon_buf = &hwmon_con_buf[0];
@@ -167,8 +169,8 @@ int main()
     if (ret) {
         printf("access hwmon_temp_path fail\r");
 		exit(1);
-    	}
-	
+	}
+		
 	sprintf(hwmon_temp_path, "%s/%s/%s", HWMON_SYS_DEV, HWMON_DEV, HWMON_HUMI);
     con_hwmon_temp.hwmon_path = hwmon_temp_path;
 
@@ -227,6 +229,14 @@ int main()
 		gpio_k4 = gpio_read (gpio_k4);
 		printf("gpio_k4 = %d\n", gpio_k4);
 		
+		gpio_k3 = 145; gpoi_k2 = 54;
+		gpio_export(gpio_k2);
+		gpio_k1 = gpio_read (gpio_k2);
+		printf("gpio_k2 = %d\n", gpio_k2);
+		gpio_export(gpio_k3);
+		gpio_k4 = gpio_read (gpio_k3);
+		printf("gpio_k3 = %d\n", gpio_k3);
+		
 		if (int_temp > UPPER_TEMP && gpio_k4 == 0)
 		{
 			printf("on 33");
@@ -258,6 +268,43 @@ int main()
 		if (gpio_k4 == 1)
 		{
 			gpio_off = 33;
+			gpio_export(gpio_off);
+			gpio_write(gpio_off, 1);
+		}
+		
+///////////////////////////////////////////////////		
+		
+		if (int_humi > UPPER_HUMI && gpio_k3 == 0)
+		{
+			printf("on 36");
+			gpio_on = 36;
+			gpio_export(gpio_on);
+			gpio_direction(gpio_on, 1);
+			gpio_write(gpio_on, 0);
+			gpio_off = 35;
+			gpio_export(gpio_off);
+			gpio_write(gpio_off, 1);
+		}
+		if (int_humi < LOWER_HUMI && gpio_k2 == 0)
+		{
+			printf("on 35");
+			gpio_on = 35;
+			gpio_export(gpio_on);
+			gpio_direction(gpio_on, 1);
+			gpio_write(gpio_on, 0);
+			gpio_off = 36;
+			gpio_export(gpio_off);
+			gpio_write(gpio_off, 1);
+		}
+		if (gpio_k3 == 1)
+		{
+			gpio_off = 36;
+			gpio_export(gpio_off);
+			gpio_write(gpio_off, 1);
+		}
+		if (gpio_k2 == 1)
+		{
+			gpio_off = 35;
 			gpio_export(gpio_off);
 			gpio_write(gpio_off, 1);
 		}
