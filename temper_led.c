@@ -14,6 +14,7 @@
 #define HWMON_SYS_DEV "/sys/class/hwmon/"
 #define HWMON_DEV "hwmon0"
 #define HWMON_TEMP "temp1_input"
+#define HWMON_HUMI "humidity1_input"
 #define UPPER_TEMP 33600
 #define LOWER_TEMP 32900
 
@@ -151,7 +152,7 @@ int main()
     int i, ret, readbuf_cnt;
     struct sys_hwmon con_hwmon_temp;
     char str_temp[10];
-    int int_temp;
+    int int_temp, int_humi;
     size_t count;
 	int gpio_on, gpio_off;
 	int gpio_k1, gpio_k4;
@@ -166,13 +167,22 @@ int main()
     if (ret) {
         printf("access hwmon_temp_path fail\r");
 		exit(1);
+		
+	sprintf(hwmon_temp_path, "%s/%s/%s", HWMON_SYS_DEV, HWMON_DEV, HWMON_HUMI);
+    con_hwmon_temp.hwmon_path = hwmon_temp_path;
+
+    ret = access(hwmon_temp_path, R_OK | W_OK);
+    if (ret) {
+        printf("access hwmon_humi_path fail\r");
+		exit(1);
 	}
 
 	count = 10;
 
 	while (1) 
 	{
-
+		
+		sprintf(hwmon_temp_path, "%s/%s/%s", HWMON_SYS_DEV, HWMON_DEV, HWMON_TEMP);
 		fd = open(hwmon_temp_path, O_ASYNC, S_IRUSR | S_IRGRP | S_IROTH);
 		if (fd < 0) {
 			printf("open %s fail\r\n", hwmon_temp_path);
@@ -187,6 +197,24 @@ int main()
 
 		int_temp = atoi(str_temp);
 		printf("Temp %d\r\n", int_temp);
+
+		close(fd);
+		
+		sprintf(hwmon_temp_path, "%s/%s/%s", HWMON_SYS_DEV, HWMON_DEV, HWMON_HUMI);
+		fd = open(hwmon_temp_path, O_ASYNC, S_IRUSR | S_IRGRP | S_IROTH);
+		if (fd < 0) {
+			printf("open %s fail\r\n", hwmon_temp_path);
+			exit(1);
+		}
+
+		readbuf_cnt = read(fd, str_temp, count);
+		if (readbuf_cnt >= count || readbuf_cnt < 0) {
+			printf("read humi fail\n");
+			exit(1);
+		}
+
+		int_humi = atoi(str_temp);
+		printf("humi %d\r\n", int_humi);
 
 		close(fd);
 		
