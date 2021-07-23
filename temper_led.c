@@ -229,7 +229,7 @@ int main()
 		gpio_k4 = gpio_read (gpio_k4);
 		printf("gpio_k4 = %d\n", gpio_k4);
 		
-		gpio_k3 = 145; gpoi_k2 = 54;
+		gpio_k3 = 145; gpio_k2 = 54;
 		gpio_export(gpio_k2);
 		gpio_k1 = gpio_read (gpio_k2);
 		printf("gpio_k2 = %d\n", gpio_k2);
