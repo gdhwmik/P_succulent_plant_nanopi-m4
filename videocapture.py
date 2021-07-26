@@ -31,4 +31,4 @@ while success:
 # some process after finish all the program
 cv2.destroyAllWindows()     # close all the widows opened inside the program
 cap.release        # release the video read/write handler
-videoWriter.release
+videoWriter.releas      # if don't do this the display colud be broken
