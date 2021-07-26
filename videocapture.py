@@ -19,7 +19,7 @@ size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
 # I420-avi=>cv2.cv.CV_FOURCC('X','2','6','4');
 # MP4=>cv2.cv.CV_FOURCC('M', 'J', 'P', 'G')
 # The mp4 encoder in my computer do not work,so i just use X264
-videoWriter = cv2.VideoWriter('oto_other.avi', cv2.VideoWriter_fourcc('H', '2', '6', '4'), fps, size)
+videoWriter = cv2.VideoWriter('oto_other.avi', cv2.VideoWriter_fourcc('X', '2', '6', '4'), fps, size)
 # read one frame from the video
 success, frame = cap.read()
 while success:
