@@ -10,7 +10,7 @@
 import cv2  # import opencv
 
 cv2.namedWindow("Oto Video", 0)
-cv2.resizeWindow("Oto Video", 320, 240)
+cv2.resizeWindow("Oto Video", 800, 600)
 
 # use opencv open the /dev/video10
 cap = cv2.VideoCapture("/dev/video10")
@@ -21,8 +21,8 @@ fps = cap.get(cv2.CAP_PROP_FPS)
 #         int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
 # =============================================================================
 
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 800)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 600)
 
 # point out how to encode videos
 # I420-avi=>cv2.cv.CV_FOURCC('X','2','6','4');
