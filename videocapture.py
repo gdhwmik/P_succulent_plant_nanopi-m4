@@ -9,6 +9,7 @@
 
 import cv2  # import opencv
 
+cv2.namedWindow("Oto Video", 0)
 # use opencv open the /dev/video10
 cap = cv2.VideoCapture("/dev/video10")
 # get the inf of vedio,fps and size
