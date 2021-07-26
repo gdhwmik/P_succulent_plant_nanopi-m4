@@ -11,9 +11,9 @@ import cv2  # import opencv
 # use opencv open the video 1.mp4
 videoCapture = cv2.VideoCapture("/dev/video10")
 # get the inf of vedio,fps and size
-fps = videoCapture.get(cv2.CV_CAP_PROP_FPS)
-size = (int(videoCapture.get(cv2.CV_CAP_PROP_FRAME_WIDTH)),
-        int(videoCapture.get(cv2.CV_CAP_PROP_FRAME_HEIGHT)))
+fps = videoCapture.get(cv2.CAP_PROP_FPS)
+size = (int(videoCapture.get(cv2.CAP_PROP_FRAME_WIDTH)),
+        int(videoCapture.get(cv2.CAP_PROP_FRAME_HEIGHT)))
 
 # point out how to encode videos
 # I420-avi=>cv2.cv.CV_FOURCC('X','2','6','4');
