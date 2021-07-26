@@ -1,33 +1,20 @@
 # -*- coding: utf-8 -*-
 # =================================================================
-# windows10, PyCharm, anaconda2, python 2.7.13, opencv 2.4.13
-# 2017-12-17
-# powered by tuzixini
-# attention: you might need install the encoder fist, like x264vfw
+# Wed Cam default info
+# Image Size: 640 x 480
+# Codec: YUYV
+# 
+#
 # =================================================================
 
 import cv2  # import opencv
-
-def decode_fourcc(v):
-  v = int(v)
-  return "".join([chr((v >> 8 * i) & 0xFF) for i in range(4)])
 
 # use opencv open the /dev/video10
 cap = cv2.VideoCapture("/dev/video10")
 # get the inf of vedio,fps and size
 fps = cap.get(cv2.CAP_PROP_FPS)
-# =============================================================================
-# size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
-#         int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
-# =============================================================================
-
-width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
-height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
-print("Image Size: %d x %d" % (width, height))
-
-fourcc = cap.get(cv2.CAP_PROP_FOURCC)
-codec = decode_fourcc(fourcc)
-print("Codec: " + codec)
+size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
+        int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
 
 # point out how to encode videos
 # I420-avi=>cv2.cv.CV_FOURCC('X','2','6','4');
