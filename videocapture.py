@@ -22,11 +22,11 @@ size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
 videoWriter = cv2.VideoWriter('oto_other.avi', cv2.VideoWriter_fourcc('X', '2', '6', '4'), fps, size)
 # read one frame from the video
 success, frame = cap.read()
-#videoWriter.write(frame)  # write one frame into the output video
+
 while success:
     cv2.imshow("Oto Video", frame)  # display this frame
     cv2.waitKey(int(fps))  # delay
-#    videoWriter.write(frame)  # write one frame into the output video
+    videoWriter.write(frame)  # write one frame into the output video
     success, frame = cap.read()  # get the next frame of the video
 # some process after finish all the program
 cv2.destroyAllWindows()     # close all the widows opened inside the program
