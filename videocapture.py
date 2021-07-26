@@ -9,17 +9,17 @@
 import cv2  # import opencv
 
 # use opencv open the video 1.mp4
-videoCapture = cv2.VideoCapture('1.mp4')
+videoCapture = cv2.VideoCapture("/dev/video10")
 # get the inf of vedio,fps and size
-fps = videoCapture.get(cv2.cv.CV_CAP_PROP_FPS)
-size = (int(videoCapture.get(cv2.cv.CV_CAP_PROP_FRAME_WIDTH)),
-        int(videoCapture.get(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT)))
+fps = videoCapture.get(cv2.CV_CAP_PROP_FPS)
+size = (int(videoCapture.get(cv2.CV_CAP_PROP_FRAME_WIDTH)),
+        int(videoCapture.get(cv2.CV_CAP_PROP_FRAME_HEIGHT)))
 
 # point out how to encode videos
 # I420-avi=>cv2.cv.CV_FOURCC('X','2','6','4');
 # MP4=>cv2.cv.CV_FOURCC('M', 'J', 'P', 'G')
 # The mp4 encoder in my computer do not work,so i just use X264
-videoWriter = cv2.VideoWriter('oto_other.avi', cv2.cv.CV_FOURCC('X', '2', '6', '4'), fps, size)
+videoWriter = cv2.VideoWriter('oto_other.avi', cv2.VideoWriter_fourcc('X', '2', '6', '4'), fps, size)
 # read one frame from the video
 success, frame = videoCapture.read()
 while success:
