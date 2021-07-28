@@ -12,11 +12,11 @@ import wiringpi as wpi
 
 
 #load finish detector
-detector_bears = dlib.simple_object_detector("svm/Bears_Paw.svm")
-detector_mesem = dlib.simple_object_detector("svm/Crassula_Mesembrianthoides.svm")
-detector_jade = dlib.simple_object_detector("svm/Gollum_Jade.svm")
-detector_panda = dlib.simple_object_detector("svm/Panda_Plant.svm")
-detector_coop = dlib.simple_object_detector("svm/Haworthia_Cooperi_var.Truncata.svm")
+detector_bears = dlib.simple_object_detector("Bears_Paw.svm")
+detector_mesem = dlib.simple_object_detector("Crassula_Mesembrianthoides.svm")
+detector_jade = dlib.simple_object_detector("Gollum_Jade.svm")
+detector_panda = dlib.simple_object_detector("Panda_Plant.svm")
+detector_coop = dlib.simple_object_detector("Haworthia_Cooperi_var.Truncata.svm")
 
 cv2.namedWindow("Oto_Video", 0)
 cv2.resizeWindow("Oto_Video", 1280, 720)
