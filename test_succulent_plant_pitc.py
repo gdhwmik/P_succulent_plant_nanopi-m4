@@ -30,7 +30,7 @@ cap.set(cv2.CAP_PROP_FRAME_WIDTH, 960)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 wpi.wiringPiSetup()
 
-videoWriter = cv2.VideoWriter('oto_other.avi', cv2.VideoWriter_fourcc('X', '2', '6', '4'), fps, (960,720))
+#videoWriter = cv2.VideoWriter('oto_other.avi', cv2.VideoWriter_fourcc('X', '2', '6', '4'), fps, (960,720))
 
 while True:
 
@@ -92,12 +92,12 @@ while True:
 
 	cv2.imshow("Oto_Video", image)  # display this frame
 	cv2.waitKey(int(fps))  # delay
-	videoWriter.write(image)  # write one frame into the output video
+#	videoWriter.write(image)  # write one frame into the output video
 	ret, image = cap.read()  # get the next frame of the video   
 #	if cv2.waitKey(1) & 0xFF == ord("q"):
 #		break
     
 cv2.destroyAllWindows()
 cap.release()
-videoWriter.releas 
+#videoWriter.releas 
 
