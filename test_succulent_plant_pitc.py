@@ -18,8 +18,8 @@ detector_jade = dlib.simple_object_detector("svm/Gollum_Jade.svm")
 detector_panda = dlib.simple_object_detector("svm/Panda_Plant.svm")
 detector_coop = dlib.simple_object_detector("svm/Haworthia_Cooperi_var.Truncata.svm")
 
-cv2.namedWindow("Oto Video", 0)
-cv2.resizeWindow("Oto Video", 1280, 720)
+cv2.namedWindow("Oto_Video", 0)
+cv2.resizeWindow("Oto_Video", 1280, 720)
 
 # use opencv open the /dev/video10
 cap = cv2.VideoCapture("/dev/video10")
@@ -84,16 +84,16 @@ while True:
 			print(x,y)
 			cv2.putText(image, "Coop", ( x+5, y+30 ), cv2.FONT_HERSHEY_COMPLEX,1, (0,0,255), 1, 10)    
         
-		cv2.imshow("Oto Video", image) 
+		cv2.imshow("Oto_Video", image) 
 		#time.sleep(5)  
 		cv2.waitKey(3000)        
 
-	cv2.imshow("Oto Video", image)  # display this frame
+	cv2.imshow("Oto_Video", image)  # display this frame
 	cv2.waitKey(int(fps))  # delay
-#    videoWriter.write(frame)  # write one frame into the output video
-	success, frame = cap.read()  # get the next frame of the video   
-	if cv2.waitKey(1) & 0xFF == ord("q"):
-		break
+	videoWriter.write(image)  # write one frame into the output video
+	ret, image = cap.read()  # get the next frame of the video   
+#	if cv2.waitKey(1) & 0xFF == ord("q"):
+#		break
     
 cv2.destroyAllWindows()
 cap.release()
