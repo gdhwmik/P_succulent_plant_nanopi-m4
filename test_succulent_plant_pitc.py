@@ -43,7 +43,7 @@ while True:
 		print(value)
 		image_p = image
 		cv2.putText(image_p, "Process....", ( 5, 60 ), cv2.FONT_HERSHEY_COMPLEX,2, (255,0,0), 1, 20) 
-		cv2.imshow("Oto Video", image_p)  # display this frame
+		cv2.imshow("Oto_Video", image_p)  # display this frame
 		cv2.waitKey(500)		
 		
 		boxes1 = detector_panda(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
