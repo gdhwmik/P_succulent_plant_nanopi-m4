@@ -1,4 +1,4 @@
-FUN_NAME=temper_led
+FUN_NAME=environment_control
 
 ${FUN_NAME}:${FUN_NAME}.o
 	${CC} -o ${FUN_NAME} ${FUN_NAME}.o -lpthread
