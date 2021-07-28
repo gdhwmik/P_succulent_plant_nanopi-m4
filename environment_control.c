@@ -199,7 +199,7 @@ int main()
 		}
 
 		int_temp = atoi(str_temp);
-		#printf("Temp %d\r\n", int_temp);
+//		printf("Temp %d\r\n", int_temp);
 
 		close(fd);
 		
@@ -217,29 +217,29 @@ int main()
 		}
 
 		int_humi = atoi(str_temp);
-		#printf("humi %d\r\n", int_humi);
+//		printf("humi %d\r\n", int_humi);
 
 		close(fd);
 		
 		gpio_k1 = 144; gpio_pwm = 150;
 		gpio_export(gpio_k1);
 		gpio_k1 = gpio_read (gpio_k1);
-		#printf("gpio_k1 = %d\n", gpio_k1);
+//		printf("gpio_k1 = %d\n", gpio_k1);
 		gpio_export(gpio_pwm);
 		gpio_pwm = gpio_read (gpio_pwm);
-		#printf("gpio_pwm = %d\n", gpio_pwm);
+//		printf("gpio_pwm = %d\n", gpio_pwm);
 		
 		gpio_k3 = 145; gpio_k2 = 54;
 		gpio_export(gpio_k2);
 		gpio_k2 = gpio_read (gpio_k2);
-		#printf("gpio_k2 = %d\n", gpio_k2);
+//		printf("gpio_k2 = %d\n", gpio_k2);
 		gpio_export(gpio_k3);
 		gpio_k3 = gpio_read (gpio_k3);
-		#printf("gpio_k3 = %d\n", gpio_k3);
+//		printf("gpio_k3 = %d\n", gpio_k3);
 		
 		if (int_temp > UPPER_TEMP && gpio_pwm == 0)
 		{
-			#printf("on 33");
+//			printf("on 33");
 			gpio_on = 33;
 			gpio_export(gpio_on);
 			gpio_direction(gpio_on, 1);
@@ -250,7 +250,7 @@ int main()
 		}
 		if (int_temp < LOWER_TEMP && gpio_k1 == 0)
 		{
-			#printf("on 32");
+//			printf("on 32");
 			gpio_on = 32;
 			gpio_export(gpio_on);
 			gpio_direction(gpio_on, 1);
@@ -276,7 +276,7 @@ int main()
 		
 		if (int_humi > UPPER_HUMI && gpio_k3 == 0)
 		{
-			#printf("on 36");
+//			printf("on 36");
 			gpio_on = 36;
 			gpio_export(gpio_on);
 			gpio_direction(gpio_on, 1);
@@ -287,7 +287,7 @@ int main()
 		}
 		if (int_humi < LOWER_HUMI && gpio_k2 == 0)
 		{
-			#printf("on 35");
+//			printf("on 35");
 			gpio_on = 35;
 			gpio_export(gpio_on);
 			gpio_direction(gpio_on, 1);
