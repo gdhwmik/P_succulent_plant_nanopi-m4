@@ -30,6 +30,8 @@ cap.set(cv2.CAP_PROP_FRAME_WIDTH, 960)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 wpi.wiringPiSetup()
 
+videoWriter = cv2.VideoWriter('oto_other.avi', cv2.VideoWriter_fourcc('X', '2', '6', '4'), fps, (960,720))
+
 while True:
 
 	ret, image = cap.read()
