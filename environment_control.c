@@ -14,7 +14,7 @@
 #define HWMON_SYS_DEV "/sys/class/hwmon/"
 #define HWMON_DEV "hwmon0"
 #define HWMON_TEMP "temp1_input"
-#define UPPER_TEMP 33600
+#define UPPER_TEMP 33000
 #define LOWER_TEMP 32900
 #define HWMON_HUMI "humidity1_input"
 #define UPPER_HUMI 80000
