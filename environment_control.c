@@ -156,7 +156,7 @@ int main()
     int int_temp, int_humi;
     size_t count;
 	int gpio_on, gpio_off;
-	int gpio_k1, gpio_k4;
+	int gpio_k1, gpio_pwm;
 	int gpio_k2, gpio_k3;
 	
     con_hwmon_temp.dev = 0;
@@ -221,13 +221,13 @@ int main()
 
 		close(fd);
 		
-		gpio_k1 = 144; gpio_k4 = 50;
+		gpio_k1 = 144; gpio_pwm = 150;
 		gpio_export(gpio_k1);
 		gpio_k1 = gpio_read (gpio_k1);
 		printf("gpio_k1 = %d\n", gpio_k1);
-		gpio_export(gpio_k4);
-		gpio_k4 = gpio_read (gpio_k4);
-		printf("gpio_k4 = %d\n", gpio_k4);
+		gpio_export(gpio_pwm);
+		gpio_pwm = gpio_read (gpio_pwm);
+		printf("gpio_pwm = %d\n", gpio_pwm);
 		
 		gpio_k3 = 145; gpio_k2 = 54;
 		gpio_export(gpio_k2);
@@ -237,7 +237,7 @@ int main()
 		gpio_k3 = gpio_read (gpio_k3);
 		printf("gpio_k3 = %d\n", gpio_k3);
 		
-		if (int_temp > UPPER_TEMP && gpio_k4 == 0)
+		if (int_temp > UPPER_TEMP && gpio_pwm == 0)
 		{
 			printf("on 33");
 			gpio_on = 33;
@@ -265,7 +265,7 @@ int main()
 			gpio_export(gpio_off);
 			gpio_write(gpio_off, 1);
 		}
-		if (gpio_k4 == 1)
+		if (gpio_pwm == 1)
 		{
 			gpio_off = 33;
 			gpio_export(gpio_off);
