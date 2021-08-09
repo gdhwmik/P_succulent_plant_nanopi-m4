@@ -18,7 +18,7 @@
 #define LOWER_TEMP 32900
 #define HWMON_HUMI "humidity1_input"
 #define UPPER_HUMI 80000
-#define LOWER_HUMI 75000
+#define LOWER_HUMI 77000
 
 int gpio_direction(int gpio, int dir)
 {
