@@ -26,7 +26,7 @@ cap = cv2.VideoCapture("/dev/video10")
 #cap = cv2.VideoCapture(0)
 # get/set the inf of vedio,fps and size
 fps = cap.get(cv2.CAP_PROP_FPS)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 960)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 wpi.wiringPiSetup()
 
